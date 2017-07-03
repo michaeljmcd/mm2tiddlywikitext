@@ -5,7 +5,7 @@
 [
     <xsl:for-each select="/map/node">
         {
-            "title": "<xsl:value-of select="./@TEXT"></xsl:value-of>",
+            "title": "<xsl:call-template name="escapeJson"><xsl:with-param name="input" select="./@TEXT" /></xsl:call-template>",
             "text": <xsl:text>"</xsl:text>
                 <xsl:for-each select="./node">
                     <xsl:call-template name="wikitextlist">
@@ -20,6 +20,33 @@
 ]
 </xsl:template>
 
+<xsl:template name="escapeJson">
+    <xsl:param name="input" />
+
+    <xsl:value-of select="$input" />
+</xsl:template>
+
+<!-- from https://stackoverflow.com/questions/7520762/xslt-1-0-string-replace-function -->
+<xsl:template name="replace-string">
+    <xsl:param name="text"/>
+    <xsl:param name="replace"/>
+    <xsl:param name="with"/>
+    <xsl:choose>
+      <xsl:when test="contains($text,$replace)">
+        <xsl:value-of select="substring-before($text,$replace)"/>
+        <xsl:value-of select="$with"/>
+        <xsl:call-template name="replace-string">
+          <xsl:with-param name="text" select="substring-after($text,$replace)"/>
+          <xsl:with-param name="replace" select="$replace"/>
+          <xsl:with-param name="with" select="$with"/>
+        </xsl:call-template>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:value-of select="$text"/>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:template>
+
 <xsl:template name="wikitextlist">
     <xsl:param name="depth" />
     <xsl:param name="currentNode" />
@@ -31,7 +58,7 @@
     </xsl:call-template>
     <xsl:text> </xsl:text>
 
-    <xsl:value-of select="./@TEXT" />
+    <xsl:call-template name="escapeJson"><xsl:with-param name="input" select="./@TEXT" /></xsl:call-template>
     
     <xsl:for-each select="./node">
         <xsl:text>\n</xsl:text>

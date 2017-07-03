@@ -20,3 +20,5 @@ I will hopefully be adding a wrapper script soon to simplify matters.
 ## Limitations
 
 Currently, just the map structure is parsed. Icons, edges and font settings are ignored.
+
+Also, general `<richcontent>` HTML nodes are not handled.
