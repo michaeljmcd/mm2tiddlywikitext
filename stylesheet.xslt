@@ -28,6 +28,8 @@
     <xsl:for-each select="./node">\n<xsl:call-template name="wikitextlist"><xsl:with-param name="depth" select="$depth + 1" /><xsl:with-param name="currentNode" select="." /></xsl:call-template></xsl:for-each>
 </xsl:template>
 
+<!-- Based on
+https://our.umbraco.org/forum/developers/xslt/23934-Loop-this-code-10-times with some changes -->
 <xsl:template name="repeatableText">
     <xsl:param name="index" select="1" />
     <xsl:param name="total" select="10" />
