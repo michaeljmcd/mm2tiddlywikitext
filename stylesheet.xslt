@@ -6,7 +6,15 @@
     <xsl:for-each select="/map/node">
         {
             "title": "<xsl:value-of select="./@TEXT"></xsl:value-of>",
-            "text": "<xsl:for-each select="./node"><xsl:call-template name="wikitextlist"><xsl:with-param name="depth" select="1" /><xsl:with-param name="startingNodes" select="." /></xsl:call-template>\n</xsl:for-each>"
+            "text": <xsl:text>"</xsl:text>
+                <xsl:for-each select="./node">
+                    <xsl:call-template name="wikitextlist">
+                        <xsl:with-param name="depth" select="1" />
+                        <xsl:with-param name="startingNodes" select="." />
+                    </xsl:call-template>
+                    <xsl:text>\n</xsl:text>
+                </xsl:for-each>
+                <xsl:text>"</xsl:text>
         }
     </xsl:for-each>
 ]
@@ -25,7 +33,13 @@
 
     <xsl:value-of select="./@TEXT" />
     
-    <xsl:for-each select="./node">\n<xsl:call-template name="wikitextlist"><xsl:with-param name="depth" select="$depth + 1" /><xsl:with-param name="currentNode" select="." /></xsl:call-template></xsl:for-each>
+    <xsl:for-each select="./node">
+        <xsl:text>\n</xsl:text>
+        <xsl:call-template name="wikitextlist">
+            <xsl:with-param name="depth" select="$depth + 1" />
+            <xsl:with-param name="currentNode" select="." />
+        </xsl:call-template>
+    </xsl:for-each>
 </xsl:template>
 
 <!-- Based on
