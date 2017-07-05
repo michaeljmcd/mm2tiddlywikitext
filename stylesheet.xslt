@@ -70,7 +70,17 @@
     </xsl:call-template>
     <xsl:text> </xsl:text>
 
-    <xsl:call-template name="escapeJson"><xsl:with-param name="input" select="./@TEXT" /></xsl:call-template>
+    <xsl:if test="count(./font) &gt; 0">
+        <xsl:text>//</xsl:text>
+    </xsl:if>
+
+    <xsl:call-template name="escapeJson">
+        <xsl:with-param name="input" select="./@TEXT" />
+    </xsl:call-template>
+
+    <xsl:if test="count(./font) &gt; 0">
+        <xsl:text>//</xsl:text>
+    </xsl:if>
     
     <xsl:for-each select="./node">
         <xsl:text>\n</xsl:text>
