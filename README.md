@@ -33,6 +33,5 @@ Validating JSON before committing is a good idea. Here is a shell statement exam
 
 * Add some basic text directive support. Bold and italic, at least, shouldn't be a huge deal.
 * Add some basic hyperlink support.
-* Ensure that text is properly escaped when exported.
 * Look at Unicode / emoji stand-ins for icons.
 * Develop a wrapper script of some sort to make this more convenient to call.
