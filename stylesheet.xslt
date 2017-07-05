@@ -23,10 +23,18 @@
 <xsl:template name="escapeJson">
     <xsl:param name="input" />
 
+    <xsl:variable name="backslashReplacedText">
+        <xsl:call-template name="replace-string">
+            <xsl:with-param name="text" select="$input" />
+            <xsl:with-param name="replace" select="'\'" />
+            <xsl:with-param name="with" select="'\\'" />
+        </xsl:call-template>
+    </xsl:variable>
+
     <xsl:call-template name="replace-string">
-        <xsl:with-param name="text" select="$input" />
-        <xsl:with-param name="replace" select="'&quot;'" />
-        <xsl:with-param name="with" select="'\&quot;'" />
+            <xsl:with-param name="text" select="$backslashReplacedText" />
+            <xsl:with-param name="replace" select="'&quot;'" />
+            <xsl:with-param name="with" select="'\&quot;'" />
     </xsl:call-template>
 </xsl:template>
 
