@@ -22,3 +22,11 @@ I will hopefully be adding a wrapper script soon to simplify matters.
 Currently, just the map structure is parsed. Icons, edges and font settings are ignored.
 
 Also, general `<richcontent>` HTML nodes are not handled.
+
+## TODO
+
+* Add some basic text directive support. Bold and italic, at least, shouldn't be a huge deal.
+* Add some basic hyperlink support.
+* Ensure that text is properly escaped when exported.
+* Look at Unicode / emoji stand-ins for icons.
+* Develop a wrapper script of some sort to make this more convenient to call.
