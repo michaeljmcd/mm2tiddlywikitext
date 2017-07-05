@@ -70,7 +70,11 @@
     </xsl:call-template>
     <xsl:text> </xsl:text>
 
-    <xsl:if test="count(./font) &gt; 0">
+    <xsl:if test="boolean(./font/@BOLD = 'true')">
+        <xsl:text>''</xsl:text>
+    </xsl:if>
+
+    <xsl:if test="boolean(./font/@ITALIC = 'true')">
         <xsl:text>//</xsl:text>
     </xsl:if>
 
@@ -78,8 +82,12 @@
         <xsl:with-param name="input" select="./@TEXT" />
     </xsl:call-template>
 
-    <xsl:if test="count(./font) &gt; 0">
+    <xsl:if test="boolean(./font/@ITALIC = 'true')">
         <xsl:text>//</xsl:text>
+    </xsl:if>
+
+    <xsl:if test="boolean(./font/@BOLD = 'true')">
+        <xsl:text>''</xsl:text>
     </xsl:if>
     
     <xsl:for-each select="./node">
