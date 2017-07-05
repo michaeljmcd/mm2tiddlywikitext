@@ -23,6 +23,12 @@ Currently, just the map structure is parsed. Icons, edges and font settings are 
 
 Also, general `<richcontent>` HTML nodes are not handled.
 
+## Hacking
+
+Validating JSON before committing is a good idea. Here is a shell statement example:
+
+     xmlstarlet tr ./stylesheet.xslt test/JSONCharacters.mm | python -m json.tool 
+
 ## TODO
 
 * Add some basic text directive support. Bold and italic, at least, shouldn't be a huge deal.
