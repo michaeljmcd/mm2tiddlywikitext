@@ -59,6 +59,30 @@
     </xsl:choose>
   </xsl:template>
 
+<xsl:template name="wikitext">
+    <xsl:param name="node" />
+
+    <xsl:if test="boolean($node/font/@BOLD = 'true')">
+        <xsl:text>''</xsl:text>
+    </xsl:if>
+
+    <xsl:if test="boolean($node/font/@ITALIC = 'true')">
+        <xsl:text>//</xsl:text>
+    </xsl:if>
+
+    <xsl:call-template name="escapeJson">
+        <xsl:with-param name="input" select="$node/@TEXT" />
+    </xsl:call-template>
+
+    <xsl:if test="boolean($node/font/@ITALIC = 'true')">
+        <xsl:text>//</xsl:text>
+    </xsl:if>
+
+    <xsl:if test="boolean($node/font/@BOLD = 'true')">
+        <xsl:text>''</xsl:text>
+    </xsl:if>
+</xsl:template>
+
 <xsl:template name="wikitextlist">
     <xsl:param name="depth" />
     <xsl:param name="currentNode" />
@@ -70,26 +94,10 @@
     </xsl:call-template>
     <xsl:text> </xsl:text>
 
-    <xsl:if test="boolean(./font/@BOLD = 'true')">
-        <xsl:text>''</xsl:text>
-    </xsl:if>
-
-    <xsl:if test="boolean(./font/@ITALIC = 'true')">
-        <xsl:text>//</xsl:text>
-    </xsl:if>
-
-    <xsl:call-template name="escapeJson">
-        <xsl:with-param name="input" select="./@TEXT" />
+    <xsl:call-template name="wikitext">
+        <xsl:with-param name="node" select="." />
     </xsl:call-template>
-
-    <xsl:if test="boolean(./font/@ITALIC = 'true')">
-        <xsl:text>//</xsl:text>
-    </xsl:if>
-
-    <xsl:if test="boolean(./font/@BOLD = 'true')">
-        <xsl:text>''</xsl:text>
-    </xsl:if>
-    
+   
     <xsl:for-each select="./node">
         <xsl:text>\n</xsl:text>
         <xsl:call-template name="wikitextlist">

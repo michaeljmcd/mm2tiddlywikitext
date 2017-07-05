@@ -1,6 +1,7 @@
 <map version="1.0.1">
 <!-- To view this file, download free mind mapping software FreeMind from http://freemind.sourceforge.net -->
-<node CREATED="1499275309299" ID="ID_590822240" MODIFIED="1499275315988" TEXT="Formatted">
+<node CREATED="1499275309299" ID="ID_590822240" MODIFIED="1499276234618" TEXT="Formatted">
+<font BOLD="true" ITALIC="true" NAME="SansSerif" SIZE="12"/>
 <node CREATED="1499275317020" ID="ID_695582890" MODIFIED="1499275319410" POSITION="right" TEXT="bold">
 <font BOLD="true" NAME="SansSerif" SIZE="12"/>
 </node>
