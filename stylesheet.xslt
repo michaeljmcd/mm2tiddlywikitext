@@ -23,7 +23,11 @@
 <xsl:template name="escapeJson">
     <xsl:param name="input" />
 
-    <xsl:value-of select="$input" />
+    <xsl:call-template name="replace-string">
+        <xsl:with-param name="text" select="$input" />
+        <xsl:with-param name="replace" select="'&quot;'" />
+        <xsl:with-param name="with" select="'\&quot;'" />
+    </xsl:call-template>
 </xsl:template>
 
 <!-- from https://stackoverflow.com/questions/7520762/xslt-1-0-string-replace-function -->
