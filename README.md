@@ -11,7 +11,13 @@ drag and drop it onto the running wiki.
 
 ## Usage
 
-The current version offers just an XSLT. You can apply it directly with XML Starlet (<http://xmlstar.sourceforge.net/>) like so:
+The current version offers just an XSLT.
+
+The easiest option is to use it directly from within FreeMind. Go to `File > Export > Using XSLT...`. 
+In the dialog that pops up, provide the path to `stylesheet.xslt` and an output location. 
+This will create a TiddlyWiki 5 JSON file that can be imported into TiddlyWiki.
+
+You also can apply it directly with XML Starlet (<http://xmlstar.sourceforge.net/>) like so:
 
     xmlstarlet  tr ./stylesheet.xslt /path/to/map.mm > my.json
 
